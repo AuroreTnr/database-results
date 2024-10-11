@@ -74,10 +74,12 @@ async function dataList(){
 function dataFilter(info){
     for(objects of info){
         // includes (arr)
-
-        let name = objects.name.first
+        console.log(objects);
         
-        if (input.value.includes(name)) {
+
+        let name = objects.email
+        
+        if (input.value.includes(email)) {
             console.log("ok");
             
         }
