@@ -31,6 +31,34 @@ async function dataList(){
         const info = data.results;
         console.log(info);
 
+
+        // DISPLAY DATA
+        for( const data of info){
+            const table = document.querySelector("tbody");
+            const createTr = document.createElement("tr");
+    
+            const cretaTrContent = `
+            <td class="img"><img class="imgProfil" src=""></img></td>
+            <td class="name"></td>
+            <td class="pseudo"></td>
+            <td class="email"></td>
+            <td class="phone"></td>
+            `
+    
+    
+            createTr.innerHTML = cretaTrContent;
+            createTr.querySelector(".imgProfil").src = `${data.picture.thumbnail}`
+            createTr.querySelector(".name").textContent = `${data.name.first}`
+            createTr.querySelector(".pseudo").textContent = `${data.login.username}`
+            createTr.querySelector(".email").textContent = `${data.email}`
+            createTr.querySelector(".phone").textContent = `${data.phone}`        
+            
+    
+            table.appendChild(createTr)
+    
+        }
+    
+
         // FONCTION FILTER
         dataFilter(info);
         
@@ -44,43 +72,20 @@ async function dataList(){
 
 // FILTER
 function dataFilter(info){
+    for(objects of info){
+        // includes (arr)
 
-
-    
-
-    // FONCTION DISPLAY
-    displayValue(info);
-
-}
-
-
-
-// DISPLAY
-function displayValue(info){
-    for( const data of info){
-        const table = document.querySelector("tbody");
-        const createTr = document.createElement("tr");
-
-        const cretaTrContent = `
-        <td class="img"><img class="imgProfil" src=""></img></td>
-        <td class="name"></td>
-        <td class="pseudo"></td>
-        <td class="email"></td>
-        <td class="phone"></td>
-        `
-
-
-        createTr.innerHTML = cretaTrContent;
-        createTr.querySelector(".imgProfil").src = `${data.picture.thumbnail}`
-        createTr.querySelector(".name").textContent = `${data.name.first}`
-        createTr.querySelector(".pseudo").textContent = `${data.login.username}`
-        createTr.querySelector(".email").textContent = `${data.email}`
-        createTr.querySelector(".phone").textContent = `${data.phone}`        
+        let name = objects.name.first
         
-
-        table.appendChild(createTr)
+        if (input.value.includes(name)) {
+            console.log("ok");
+            
+        }
 
     }
+
+    console.log(info);
+    
 
 }
 
