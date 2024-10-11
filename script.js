@@ -91,7 +91,7 @@ function dataFilter(info){
 
 }
 
-
+// Pourquoi je ne peux pas iterer dans info ???
 
 
 
