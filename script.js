@@ -1,21 +1,62 @@
 // SELECTION
-const h1 = document.querySelector("h1");
-const container = document.querySelector(".container-users");
+const input = document.querySelector("#search");
+const errorMessage = document.querySelector(".msg-error");
+const name = document.querySelectorAll(".name");
 
-window.addEventListener("load", dataList)
+
+
+window.addEventListener("load", dataList);
+input.addEventListener("input", dataFilter);
 
 
 // APPEL API
 async function dataList(){
-    const reponse = await fetch("https://randomuser.me/api/?results=10");
-    console.log(reponse);
 
-    const data = await reponse.json();
+    try {
 
-    const info = data.results;
+        
+        const reponse = await fetch("https://randomuser.me/api/?results=10");
 
-    console.log(info);
+        //MESSAGE ERROR
+        if (!reponse.ok) {
+            throw new Error(`Oups vous avez une erreur ${reponse.status} `);
+            
+        }
+
+        
+        console.log(reponse);
+        
+        const data = await reponse.json();
+        
+        const info = data.results;
+        console.log(info);
+
+        // FONCTION FILTER
+        dataFilter(info);
+        
+       
+    } catch (error) {
+        // MESSAGE ERROR
+        errorMessage.textContent = `${error} `
+    }
+
+}
+
+// FILTER
+function dataFilter(info){
+
+
     
+
+    // FONCTION DISPLAY
+    displayValue(info);
+
+}
+
+
+
+// DISPLAY
+function displayValue(info){
     for( const data of info){
         const table = document.querySelector("tbody");
         const createTr = document.createElement("tr");
@@ -42,8 +83,6 @@ async function dataList(){
     }
 
 }
-
-// FILTER
 
 
 
