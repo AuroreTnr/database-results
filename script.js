@@ -5,6 +5,7 @@ const name = document.querySelectorAll(".name");
 
 
 
+
 window.addEventListener("load", dataList);
 input.addEventListener("input", dataFilter);
 
@@ -31,11 +32,15 @@ async function dataList(){
         const info = data.results;
         console.log(info);
 
+        let table;
+
 
         // DISPLAY DATA
         for( const data of info){
-            const table = document.querySelector("tbody");
+            table = document.querySelector("tbody");
+            
             const createTr = document.createElement("tr");
+
     
             const cretaTrContent = `
             <td class="img"><img class="imgProfil" src=""></img></td>
@@ -57,11 +62,11 @@ async function dataList(){
             table.appendChild(createTr)
     
         }
+        
+        dataFilter(table);
+
     
 
-        // FONCTION FILTER
-        dataFilter(info);
-        
        
     } catch (error) {
         // MESSAGE ERROR
@@ -71,27 +76,42 @@ async function dataList(){
 }
 
 // FILTER
-function dataFilter(info){
-    for(objects of info){
-        // includes (arr)
-        console.log(objects);
-        
+function dataFilter(){
+    
+    const allNames = document.querySelectorAll(".name");
+    const allTr = document.querySelectorAll("tr");
 
-        let name = objects.email
+    console.log(allNames);
+    console.log(allTr);
+
+    if (input.value.length > 0) {
         
-        if (input.value.includes(email)) {
-            console.log("ok");
+        let inputValue = input.value.split("");
+        console.log(inputValue);
+
+        for (let i = 0; i < allNames.length; i++) {
+
+            let name = allNames[i].textContent.split("");
+            console.log(name);
+
+            for (let index = 0; index < inputValue.length; index++) {
+                if (inputValue[index] != name[index]) {
+                    allTr[i + 1].style.display="none";                    
+                }
+
+                console.log(inputValue);
+                
+            }
             
+
+                
         }
 
     }
 
-    console.log(info);
-    
 
 }
 
-// Pourquoi je ne peux pas iterer dans info ???
 
 
 
