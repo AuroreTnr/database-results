@@ -113,6 +113,17 @@ function dataFilter(){
 }
 
 
-
+// // Filtrer les éléments de la liste
+// document.getElementById('filter-items').addEventListener('input', function() {
+//     const filter = this.value.toLowerCase();
+//     const items = document.querySelectorAll('#item-list li');
+//     items.forEach(item => {
+//         if (item.textContent.toLowerCase().includes(filter)) {
+//             item.style.display = '';
+//         } else {
+//             item.style.display = 'none';
+//         }
+//     });
+// });
 
 
