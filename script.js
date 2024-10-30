@@ -1,20 +1,19 @@
 // SELECTION
 const input = document.querySelector("#search");
 const errorMessage = document.querySelector(".msg-error");
-const name = document.querySelectorAll(".name");
+const tableBody = document.querySelector("tbody");
+
 
 
 
 
 window.addEventListener("load", dataList);
-input.addEventListener("input", dataFilter);
 
 
 // APPEL API
 async function dataList(){
 
     try {
-
         
         const reponse = await fetch("https://randomuser.me/api/?results=10");
 
@@ -62,12 +61,7 @@ async function dataList(){
             table.appendChild(createTr)
     
         }
-        
-        dataFilter(table);
 
-    
-
-       
     } catch (error) {
         // MESSAGE ERROR
         errorMessage.textContent = `${error} `
@@ -75,55 +69,31 @@ async function dataList(){
 
 }
 
-// FILTER
-function dataFilter(){
-    
-    const allNames = document.querySelectorAll(".name");
-    const allTr = document.querySelectorAll("tr");
 
-    console.log(allNames);
-    console.log(allTr);
 
-    if (input.value.length > 0) {
-        
-        let inputValue = input.value.split("");
-        console.log(inputValue);
 
-        for (let i = 0; i < allNames.length; i++) {
 
-            let name = allNames[i].textContent.split("");
-            console.log(name);
 
-            for (let index = 0; index < inputValue.length; index++) {
-                if (inputValue[index] != name[index]) {
-                    allTr[i + 1].style.display="none";                    
-                }
+// Filtrer les éléments de la liste
+input.addEventListener('input', filterItems);
 
-                console.log(inputValue);
-                
+function filterItems() {
+    const filter = this.value.toLowerCase();
+    const rows = tableBody.querySelectorAll('tr');
+
+    rows.forEach(row => {
+        const cells = row.querySelectorAll("td")
+        let found = false;
+
+        cells.forEach(cell => {
+            if (cell.textContent.toLowerCase().includes(filter)) {
+                found = true;
             }
-            
+        });
 
-                
-        }
+        row.style.display = found ? '' : 'none';
+    });
+};
 
-    }
-
-
-}
-
-
-// // Filtrer les éléments de la liste
-// document.getElementById('filter-items').addEventListener('input', function() {
-//     const filter = this.value.toLowerCase();
-//     const items = document.querySelectorAll('#item-list li');
-//     items.forEach(item => {
-//         if (item.textContent.toLowerCase().includes(filter)) {
-//             item.style.display = '';
-//         } else {
-//             item.style.display = 'none';
-//         }
-//     });
-// });
 
 
