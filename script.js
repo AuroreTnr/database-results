@@ -1,5 +1,5 @@
 // SELECTION
-const input = document.querySelector("#search");
+const input = document.querySelector(".search");
 const errorMessage = document.querySelector(".msg-error");
 const tableBody = document.querySelector("tbody");
 
@@ -42,7 +42,7 @@ async function dataList(){
 
     
             const cretaTrContent = `
-            <td class="img"><img class="imgProfil" src=""></img></td>
+            <td class="img text-center"><img class="imgProfil rounded border" src=""></img></td>
             <td class="name"></td>
             <td class="pseudo"></td>
             <td class="email"></td>
